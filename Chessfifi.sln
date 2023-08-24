@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessfifi.EndPoint", "Chessfifi.EndPoint\Chessfifi.EndPoint.csproj", "{76AE7D0F-9D5D-442D-9342-3E513A5815E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessfifi.Domain", "Chessfifi.Domain\Chessfifi.Domain.csproj", "{A952F0B2-1F67-4F92-BE7C-0AA9B93293CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76AE7D0F-9D5D-442D-9342-3E513A5815E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76AE7D0F-9D5D-442D-9342-3E513A5815E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76AE7D0F-9D5D-442D-9342-3E513A5815E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76AE7D0F-9D5D-442D-9342-3E513A5815E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A952F0B2-1F67-4F92-BE7C-0AA9B93293CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A952F0B2-1F67-4F92-BE7C-0AA9B93293CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A952F0B2-1F67-4F92-BE7C-0AA9B93293CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A952F0B2-1F67-4F92-BE7C-0AA9B93293CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8B5E9ED-5A6F-43E3-A31E-C8C644ECFA90}
+	EndGlobalSection
+EndGlobal
