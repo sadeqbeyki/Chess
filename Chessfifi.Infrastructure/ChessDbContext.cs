@@ -12,6 +12,7 @@ public class ChessDbContext : DbContext
     }
 
     public DbSet<ChessSquare> ChessSquares { get; set; }
+    public DbSet<ChessGame> ChessGames { get; set; }
     public DbSet<ChessMove> ChessMoves { get; set; }
     public DbSet<Player> Players { get; set; }
 }
