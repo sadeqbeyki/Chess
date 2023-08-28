@@ -3,7 +3,7 @@ using Chessfifi.Infrastructure;
 
 namespace Chessfifi.Infrastructure.Repositories
 {
-    public class ChessRepository
+    public class ChessRepository : IChessRepository
     {
         private readonly ChessDbContext _context;
 

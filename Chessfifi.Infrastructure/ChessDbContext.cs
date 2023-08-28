@@ -7,6 +7,12 @@ namespace Chessfifi.Infrastructure;
 public class ChessDbContext : DbContext
 {
 
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //{
+    //    var assembly = typeof(GameConfig).Assembly;
+    //    modelBuilder.ApplyConfigurationsFromAssembly(assembly);
+    //    base.OnModelCreating(modelBuilder);
+    //}
     public ChessDbContext(DbContextOptions<ChessDbContext> options) : base(options)
     {
     }

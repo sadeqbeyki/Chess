@@ -1,10 +1,21 @@
+using Chessfifi.Domain;
+using Chessfifi.Infrastructure;
+using Chessfifi.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+builder.Services.AddScoped<IGameRepository,GameRepository>();
+builder.Services.AddScoped<IChessRepository, ChessRepository>();
 
+
+builder.Services.AddDbContext<ChessDbContext>(c =>
+    c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

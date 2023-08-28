@@ -1,8 +1,26 @@
-﻿@{
+﻿@using Chessfifi.Domain;
+@model ChessGame
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <h1>Chess Game</h1>
+    <div class="chessboard">
+        @for (int row = 0; row < 5; row++)
+        {
+            for (int col = 0; col < 5; col++)
+            {
+                var square = Model.ChessBoard.FirstOrDefault(sq => sq.Row == row && sq.Column == col);
+                var squareColor = (row + col) % 2 == 0 ? "white" : "black";
+                <div class="chess-square @squareColor">
+                    @if (square != null && square.Piece != null)
+                    {
+                        <span>@square.Piece</span>
+                    }
+                </div>
+            }
+        }
+    </div>
 </div>
