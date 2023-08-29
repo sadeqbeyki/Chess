@@ -18,8 +18,36 @@ namespace Chessfifi.EndPoint.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            ChessGame chessGame = new(); // ایجاد یک نمونه از مدل ChessGame و پر کردن آن
+
+            // پر کردن اطلاعات تخته شطرنج (ChessBoard)
+            chessGame.ChessBoard = new List<ChessSquare>();
+            for (int row = 0; row < 5; row++)
+            {
+                for (int col = 0; col < 5; col++)
+                {
+                    var square = new ChessSquare { Row = row, Column = col, Piece = null };
+                    // می‌توانید مهره‌ها را بر اساس شرایط مد نظر خود پر کنید
+                    // square.Piece = ...;
+                    chessGame.ChessBoard.Add(square);
+                }
+            }
+
+            // پر کردن اطلاعات بازیکنان (Players)
+            chessGame.Players = new List<Player>
+    {
+        new Player { Name = "Player 1", IsTurn = true },
+        new Player { Name = "Player 2", IsTurn = false }
+    };
+
+            // پر کردن اطلاعات حرکت‌ها (ChessMoves)
+            chessGame.ChessMoves = new List<ChessMove>();
+            // می‌توانید حرکت‌ها را بر اساس شرایط مد نظر خود پر کنید
+            // chessGame.ChessMoves.Add(...);
+
+            return View(chessGame); // ارسال مدل به ویو
         }
+
 
         //public IActionResult Index()
         //{
