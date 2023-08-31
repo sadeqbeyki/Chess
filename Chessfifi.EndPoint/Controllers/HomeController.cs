@@ -27,6 +27,24 @@ namespace Chessfifi.EndPoint.Controllers
                 for (int col = 0; col < 5; col++)
                 {
                     var square = new ChessSquare { Row = row, Column = col, Piece = null };
+                    //square.Piece = new List<string>
+                    //{
+                    //        "/img/rook.png",
+                    //        "/img/knight.png",
+                    //        "/img/bishop.png",
+                    //        "/img/queen.png",
+                    //        "/img/king.png"
+                    //};
+
+                    //var pieceIndex = 0;
+                    //foreach (var item in chessGame.ChessBoard)
+                    //{
+                    //    if (pieceIndex < square.Piece.Count)
+                    //    {
+                    //        square.Piece = square.Piece[pieceIndex];
+                    //        pieceIndex++;
+                    //    }
+                    //}
                     // می‌توانید مهره‌ها را بر اساس شرایط مد نظر خود پر کنید
                     // square.Piece = ...;
                     chessGame.ChessBoard.Add(square);
