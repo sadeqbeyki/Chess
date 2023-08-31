@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chessfifi.Domain", "Chessfi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chessfifi.Infrastructure", "Chessfifi.Infrastructure\Chessfifi.Infrastructure.csproj", "{CAB8BBC8-5340-4BF9-94DC-D9837970165A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessfifi.Services", "Chessfifi.Services\Chessfifi.Services.csproj", "{6E6B5F75-2BA6-4E90-8A6E-5C50C8EC65DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chessfifi.Services", "Chessfifi.Services\Chessfifi.Services.csproj", "{6E6B5F75-2BA6-4E90-8A6E-5C50C8EC65DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessfifi.Contracts", "Chessfifi.Contracts\Chessfifi.Contracts.csproj", "{B5C45232-7C4A-453C-9B29-9EC48E3FB04A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chessfifi.Contracts", "Chessfifi.Contracts\Chessfifi.Contracts.csproj", "{B5C45232-7C4A-453C-9B29-9EC48E3FB04A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessfifi.Common", "Chessfifi.Common\Chessfifi.Common.csproj", "{933E9CF7-7022-4BC1-B9EB-BA2608175F41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B5C45232-7C4A-453C-9B29-9EC48E3FB04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5C45232-7C4A-453C-9B29-9EC48E3FB04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5C45232-7C4A-453C-9B29-9EC48E3FB04A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{933E9CF7-7022-4BC1-B9EB-BA2608175F41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{933E9CF7-7022-4BC1-B9EB-BA2608175F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{933E9CF7-7022-4BC1-B9EB-BA2608175F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{933E9CF7-7022-4BC1-B9EB-BA2608175F41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

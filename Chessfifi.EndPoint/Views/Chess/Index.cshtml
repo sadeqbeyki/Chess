@@ -1,89 +1,24 @@
-﻿
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Chess board</title>
-    <style>
-        body {
-            text-align: center;
-        }
-
-        .cell {
-            height: 100px;
-            width: 100px;
-            border: 1.5px solid grey;
-            border-style: inset;
-            text-align: center;
-            line-height: 100px;
-            font-size: 20px;
-        }
-
-        .blackcell {
-            background-color: #b58863;
-        }
-
-        .whitecell {
-            background-color: #f0d9b5;
-        }
-    </style>
-</head>
-
-<body>
-@* 
-    <script type="text/javascript">
-
-        // Create a center tag to center all the elements
-
-    </script> *@
-</body>
-
-</html>
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
 
 
-<script>
-    var center = document.createElement('center');
+<div class="text-center">
 
-    // Create a table element
-    var ChessTable = document.createElement('table');
-    for (var i = 0; i < 5; i++) {
+    <h1>Chess Game</h1>
 
-        // Create a row
-        var tr = document.createElement('tr');
-        for (var j = 0; j < 5; j++) {
 
-            // Create a cell
-            var td = document.createElement('td');
+    <div class="chessboard">
+        @for (int file = 0; file < 5; file++)
+        {
+            for (int rank = 0; rank < 5; rank++)
+            {
+                bool isLightSquare = (file + rank) % 2 == 0;
+                var squareColor = (isLightSquare) ? "white" : "black";
+                <div class="chess-square @squareColor">
 
-            // If the sum of cell coordinates is even
-            // then color the cell white
-            if ((i + j) % 2 == 0) {
-
-                // Create a class attribute for all white cells
-                td.setAttribute('class', 'cell whitecell');
-                tr.appendChild(td);
-            }
-
-            // If the sum of cell coordinates is odd then
-            // color the cell black
-            else {
-
-                // Create a class attribute for all black cells
-                td.setAttribute('class', 'cell blackcell');
-
-                // Append the cell to its row
-                tr.appendChild(td);
+                </div>
             }
         }
-
-        // Append the row
-        ChessTable.appendChild(tr);
-    }
-    center.appendChild(ChessTable);
-
-    // Modifying table attribute properties
-    ChessTable.setAttribute('cellspacing', '0');
-    ChessTable.setAttribute('width', '500px');
-    document.body.appendChild(center);
-
-</script>
+    </div>
+</div>

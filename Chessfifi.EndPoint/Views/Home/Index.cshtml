@@ -1,31 +1,9 @@
-﻿@using Chessfifi.Domain;
-@model ChessGame
+﻿
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
 
-    <h1>Chess Game</h1>
-
-
-    <div class="chessboard">
-        @for (int row = 0; row < 5; row++)
-        {
-            for (int col = 0; col < 5; col++)
-            {
-                var square = Model.ChessBoard.FirstOrDefault(sq => sq.Row == row && sq.Column == col);
-                var squareColor = (row + col) % 2 == 0 ? "white" : "black";
-                <div class="chess-square @squareColor">
-                    @if (square != null && !string.IsNullOrEmpty(square.Piece))
-                    {
-                        <img src="~/img/pieces/80/@(square.Piece).png" alt="Piece" />
-                    }
-                </div>
-            }
-        }
-    </div>
-</div>
 
 
 
