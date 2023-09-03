@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="ChessDotCore.Engine" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chessfifi.Common\Chessfifi.Common.csproj" />
   </ItemGroup>
 
 </Project>
