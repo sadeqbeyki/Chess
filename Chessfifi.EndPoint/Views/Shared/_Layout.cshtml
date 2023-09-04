@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    var user = ViewBag.User as Chessfifi.EndPoint.Models.Common.UserViewModel;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,35 +13,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Chessfifi.EndPoint.styles.css" asp-append-version="true" />
-    <style>
-        body {
-            text-align: center;
-        }
-        .chessboard {
-            display: grid;
-            grid-template-columns: repeat(5, 100px);
-            grid-template-rows: repeat(5, 100px);
-            gap: 2px;
-        }
-
-        .chess-square {
-            width: 100px;
-            height: 100px;
-            border: 1.5px solid grey;
-            border-style: inset;
-            text-align: center;
-            line-height: 100px;
-            font-size: 20px;
-        }
-
-        .white {
-            background-color: #f0d9b5;
-        }
-
-        .black {
-            background-color: #b58863;
-        }
-    </style>
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.css">
+    <link rel="stylesheet" href="~/css/chess.css" />
 </head>
 <body>
     <header>
@@ -48,13 +27,28 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Chess" asp-action="Index">Chess</a>
-                        </li>
+                        @if (user != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Chess" asp-action="Index">
+                                    Chess
+                                    @if (user.IsEmailConfirmed == false)
+                                    {
+                                        <i class="fa fa-lock"></i>
+                                    }
+                                </a>
+                            </li>
+                            @if (user.IsEmailConfirmed)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Chess" asp-action="History">
+                                        Game History
+                                    </a>
+                                </li>
+                            }
+                        }
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -67,12 +61,13 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Chess - <a asp-area="" asp-controller="Game" asp-action="Index">Game</a>
+            &copy; 2023 - Chess - <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/common.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

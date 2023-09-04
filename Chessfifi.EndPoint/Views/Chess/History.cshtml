@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Chess";
+}
+
+@using Chessfifi.Common.Enums
+
+@model HistoryModel
+
+<h2>
+    Your Games . . .
+</h2>
+
+@if (Model?.Games != null)
+{
+    foreach (var game in Model.Games)
+    {
+        <div>
+            <a href="/History/@game.Id">Game link</a>
+            <label>@game.Id</label>
+            @if (game.WinSide != null)
+            {
+                if (game.WhitePlayer.Id == Model.MyPlayerId)
+                {
+                    if (game.WinSide == GameSide.White)
+                    {
+                        <label>Winning</label>
+                    }
+                    else
+                    {
+                        <label>Defeat</label>
+                    }
+                }
+                else
+                {
+                    if (game.WinSide == GameSide.Black)
+                    {
+                        <label>Winning</label>
+                    }
+                    else
+                    {
+                        <label>Defeat</label>
+                    }
+                }
+            }
+            else
+            {
+                <label>Lottery</label>
+            }
+            @if (game.FinishReason == FinishReason.Mate)
+            {
+                <label>Checkmate</label>
+            }
+            else if (game.FinishReason == FinishReason.TimeOver)
+            {
+                <label>Time is over</label>
+            }
+            else if (game.FinishReason == FinishReason.Surrender)
+            {
+                <label>Conceded defeat</label>
+            }
+            else
+            {
+                <label>@game.FinishReason.ToString()</label>
+            }
+        </div>
+    }
+}

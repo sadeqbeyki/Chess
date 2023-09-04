@@ -1,0 +1,119 @@
+﻿@using Chessfifi.EndPoint.Models.Common;
+@{
+    ViewData["Title"] = "Chess";
+}
+
+@{
+    var user = ViewBag.User as UserViewModel;
+    var success = user != null && user.IsEmailConfirmed;
+}
+
+@if (!success)
+{
+    <label>برای شروع بازی باید نسخت ایمیل خود را تایید نمایید</label>
+    <br />
+    <a href="/Identity/Account/Manage/Email">برو به تنظیمات ایمیل</a>
+    return;
+}
+<script src="~/js/chess.js" asp-append-version="true"></script>
+<script src="~/js/fields.js" asp-append-version="true"></script>
+<div id="gameBlock" class="game-block bg-dark">
+    <div id="searchBlock" class="game-search">
+        <img src="/img/pieces/classic-mode.png" class="search-mode selected-mode" data-value="classic" title="Classic Chess" onclick="setMode(this)">
+        <img src="/img/pieces/dragon-mode.png" class="search-mode" data-value="dragon" title="Add-on 'Dragon'" onclick="setMode(this)">
+        <button class="btn btn-success hide-is-search" onclick="startSearch()">یافتن یک بازی . . . </button>
+        <div class="show-is-search">
+            <button class="btn btn-warning" onclick="stopSearch()">چشم پوشی از جستجو</button>
+            <label>
+                Looking for a game
+                <span id="searchSpan"></span>
+                <span id="searchSpan2"></span>
+            </label>
+        </div>
+    </div>
+    <div id="fieldBlock" class="field-block">
+        <div id="field" class="game-field text-light bg-dark">
+        </div>
+
+        <div class="bg-dark text-white game-status">
+            <label class="bg-dark text-white game-my-step hidden">نوبت شماست</label>
+            <label class="bg-dark text-white game-not-my-step hidden">شکیبا باشید، نوبت حریف است.</label>
+
+            <label class="bg-dark text-white game-my-win hidden">شما برنده شدید</label>
+            <label class="bg-dark text-white game-not-my-win hidden ">شما باختید</label>
+            <label class="bg-dark text-white game-draw hidden">Draw</label>
+
+            <div></div>
+            <label class="game-enemy-name hidden"></label>
+            <div></div>
+            <label class="game-finish-reason hidden"></label>
+        </div>
+        <div id="actionBlock" class="game-actions">
+            <button class="btn btn-warning" onclick="surrenderInitial()">واگذاری بازی</button>
+            <a id="gameLink" class="hidden btn btn-info">لینک بازی</a>
+        </div>
+    </div>
+    <div id="historyBlock" class="history-block">
+    </div>
+</div>
+
+<div id="pawnTransformPieceModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select a shape</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pawn-transform-piece-select">
+                <img class="hidden-black" src="~/img/pieces/320/bQ.png" onclick="selectPawnTransformPiece('queen')">
+                <img class="hidden-black" src="~/img/pieces/320/bK.png" onclick="selectPawnTransformPiece('knight')">
+                <img class="hidden-black" src="~/img/pieces/320/bP.png" onclick="selectPawnTransformPiece('bishop')">
+                <img class="hidden-black" src="~/img/pieces/320/bR.png" onclick="selectPawnTransformPiece('rook')">
+
+                <img class="hidden-white" src="~/img/pieces/320/wQ.png" onclick="selectPawnTransformPiece('queen')">
+                <img class="hidden-white" src="~/img/pieces/320/wK.png" onclick="selectPawnTransformPiece('knight')">
+                <img class="hidden-white" src="~/img/pieces/320/wB.png" onclick="selectPawnTransformPiece('bishop')">
+                <img class="hidden-white" src="~/img/pieces/320/wR.png" onclick="selectPawnTransformPiece('rook')">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="surrenderModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm the action</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                با پذیرفتن شکست، بازی را واگذار خواهی نمود
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="surrender()"><i class="fa fa-check"></i>پذیرش شکست</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i>چشم پوشی</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmStartGameModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">حریف پیدا شد</h5>
+            </div>
+            <div class="modal-body">
+                تایید شروع بازی
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="confirmStart(true)"><i class="fa fa-check"></i>شروع بازی</button>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="confirmStart(false)"><i class="fa fa-times-circle"></i>چشم پوشی</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+
+    <h1>Chess Game</h1>
+
+
+    <div class="chessboard">
+        @for (int file = 0; file < 5; file++)
+        {
+            for (int rank = 0; rank < 5; rank++)
+            {
+                bool isLightSquare = (file + rank) % 2 == 0;
+                var squareColor = (isLightSquare) ? "white" : "black";
+                <div class="chess-square @squareColor">
+
+                </div>
+            }
+        }
+    </div>
+</div>

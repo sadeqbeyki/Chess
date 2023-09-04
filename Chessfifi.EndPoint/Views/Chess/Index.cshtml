@@ -1,24 +1,119 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Chess";
 }
 
+@{
+    var user = ViewBag.User as Chessfifi.EndPoint.Models.Common.UserViewModel;
+    var success = user != null && user.IsEmailConfirmed;
+}
 
-<div class="text-center">
+@if (!success)
+{
+<label>Для игры обязательна регистрация с подтверждением почты.</label>
+<br />
+<a href="/Identity/Account/Manage/Email">Перейти в настройки почты</a>
+    return;
+}
+<script src="~/js/chess.js" asp-append-version="true"></script>
+<script src="~/js/fields.js" asp-append-version="true"></script>
+<div id="gameBlock" class="game-block">
+    <div id="searchBlock" class="game-search">
+        <img src="/Content/Images/classic-mode.png" class="search-mode selected-mode" data-value="classic" title="Классическите шахматы" onclick="setMode(this)">
+        <img src="/Content/Images/dragon-mode.png" class="search-mode" data-value="dragon" title="Дополение 'Дракон'" onclick="setMode(this)">
+        <button class="btn btn-success hide-is-search" onclick="startSearch()">Найти игру</button>
+        <div class="show-is-search">
+            <button class="btn btn-warning" onclick="stopSearch()">Остановить поиск</button>
+            <label>
+                Идёт поиск игры
+                <span id="searchSpan"></span>
+                <span id="searchSpan2"></span>
+            </label>
+        </div>
+    </div>
+    <div id="fieldBlock" class="field-block">
+        <div id="field" class="game-field">
 
-    <h1>Chess Game</h1>
+        </div>
 
+        <div class="game-status">
+            <label class="game-my-step hidden">Ваш ход</label>
+            <label class="game-not-my-step hidden">Ожидайте хода оппонента</label>
 
-    <div class="chessboard">
-        @for (int file = 0; file < 5; file++)
-        {
-            for (int rank = 0; rank < 5; rank++)
-            {
-                bool isLightSquare = (file + rank) % 2 == 0;
-                var squareColor = (isLightSquare) ? "white" : "black";
-                <div class="chess-square @squareColor">
+            <label class="game-my-win hidden">Вы выиграли</label>
+            <label class="game-not-my-win hidden">Вы проиграли</label>
+            <label class="game-draw hidden">Ничья</label>
 
-                </div>
-            }
-        }
+            <div></div>
+            <label class="game-enemy-name hidden"></label>
+            <div></div>
+            <label class="game-finish-reason hidden"></label>
+        </div>
+        <div id="actionBlock" class="game-actions">
+            <button class="btn btn-warning" onclick="surrenderInitial()">Сдаться</button>
+        </div>
+        <a id="gameLink" class="hidden">Ссылка на игру</a>
+    </div>
+    <div id="historyBlock" class="history-block">
+    </div>
+</div>
+
+<div id="pawnTransformPieceModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Выберите фигуру</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pawn-transform-piece-select">
+                <img class="hidden-black" src="~/content/images/piece/queen-black.png" onclick="selectPawnTransformPiece('queen')">
+                <img class="hidden-black" src="~/content/images/piece/knight-black.png" onclick="selectPawnTransformPiece('knight')">
+                <img class="hidden-black" src="~/content/images/piece/bishop-black.png" onclick="selectPawnTransformPiece('bishop')">
+                <img class="hidden-black" src="~/content/images/piece/rook-black.png" onclick="selectPawnTransformPiece('rook')">
+
+                <img class="hidden-white" src="~/content/images/piece/queen-white.png" onclick="selectPawnTransformPiece('queen')">
+                <img class="hidden-white" src="~/content/images/piece/knight-white.png" onclick="selectPawnTransformPiece('knight')">
+                <img class="hidden-white" src="~/content/images/piece/bishop-white.png" onclick="selectPawnTransformPiece('bishop')">
+                <img class="hidden-white" src="~/content/images/piece/rook-white.png" onclick="selectPawnTransformPiece('rook')">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="surrenderModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Подтвердите действие</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                После нажатия "Признать поражение" игра будет закончена не в вашу пользу
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="surrender()"><i class="fa fa-check"></i>Признать поражение</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i>Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmStartGameModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Соперник найден</h5>
+            </div>
+            <div class="modal-body">
+                Подтвердите начало игры
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="confirmStart(true)"><i class="fa fa-check"></i>Начать игру</button>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="confirmStart(false)"><i class="fa fa-times-circle"></i>Отмена</button>
+            </div>
+        </div>
     </div>
 </div>

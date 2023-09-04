@@ -1,0 +1,194 @@
+﻿
+.game-field {
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+    display: none;
+}
+
+    .game-field.side-white,
+    .game-field.side-black {
+        display: inline-block;
+    }
+
+    .game-field.side-black {
+        transform: rotate( 180deg );
+    }
+
+        .game-field.side-black .column .field-label,
+        .game-field.side-black .column img {
+            transform: rotate( 180deg );
+        }
+
+
+
+    .game-field .column.column-label {
+        text-align: center;
+    }
+
+        .game-field .column.column-label.field-border-bottom {
+            border-bottom: 1px solid black;
+        }
+
+        .game-field .column.column-label.field-border-top {
+            border-top: 1px solid black;
+        }
+
+        .game-field .column.column-label.field-border-right {
+            border-right: 1px solid black;
+        }
+
+        .game-field .column.column-label.field-border-left {
+            border-left: 1px solid black;
+        }
+
+    .game-field .column .field-label {
+        font-size: 18px;
+        line-height: 50px;
+    }
+
+.hidden {
+    display: none;
+}
+
+.game-status label {
+    font-size: 18px;
+}
+
+.field div.line:last-child {
+    border-top: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.line {
+    display: flex;
+    height: 50px;
+}
+
+.column {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+
+.position-black {
+    background-color: #779954;
+}
+
+.position-white {
+    background-color: #e9edcc;
+}
+
+.piece {
+    fill: red;
+}
+
+.piece-img {
+    width: 46px;
+    display: block;
+    margin: 2px;
+}
+
+.column .piece-select {
+    border: 2px solid #FF66F2;
+}
+
+.piece-is-last-move-to {
+    border: 2px solid #FF962D;
+}
+
+    .piece-is-last-move-to img {
+        margin: 0px;
+    }
+
+.piece-move-target-good {
+    border: 2px solid #62EF80;
+}
+
+.piece-move-target-bad {
+    border: 2px solid #ED1F1C;
+}
+
+.piece-is-last-move-from {
+    border: 2px solid #FF962D;
+}
+
+.show-is-search {
+    display: none;
+}
+
+.in-process .show-is-search {
+    display: block;
+}
+
+.in-process .hide-is-search {
+    display: none;
+}
+
+.search-mode {
+    width: 50px;
+    border: 2px solid #404040;
+    cursor: pointer;
+}
+
+    .search-mode.selected-mode {
+        border: 2px solid #11db1b;
+    }
+
+.in-process .search-mode {
+    cursor: inherit;
+}
+
+.pawn-transform-piece-select img {
+    width: 46px;
+    margin: 2px;
+    border: solid 2px #6B92FF;
+    cursor: pointer;
+}
+
+    .pawn-transform-piece-select img:hover {
+        border: solid 2px #4FFF63;
+    }
+
+.pawn-transform-piece-select .hidden-black,
+.pawn-transform-piece-select .hidden-white {
+    display: none;
+}
+
+.pawn-transform-piece-select.select-black .hidden-black,
+.pawn-transform-piece-select.select-white .hidden-white {
+    display: inline-block;
+}
+
+.game-status-process .game-actions {
+    display: block;
+}
+
+.game-status-process .game-search {
+    display: none;
+}
+
+.game-actions {
+    display: none;
+}
+
+.field-block {
+    display: inline-block;
+    background-color: #302e2b;
+}
+
+.history-block {
+    display: inline-block;
+    vertical-align: top;
+    max-height: 504px;
+    overflow-y: auto;
+}
+
+.history.history-block {
+    max-height: 404px;
+}
+
+.modal button i {
+    padding: 5px;
+}

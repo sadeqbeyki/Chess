@@ -1,0 +1,105 @@
+﻿@using Chessfifi.EndPoint.Models;
+@{
+    ViewData["Title"] = "Chess";
+}
+
+@using Chessfifi.Common.Enums
+
+@model HistoryGameModel
+
+
+<h2>
+    Игра @Model.Id
+    <br />
+    @Model.WhitePlayer.Name VS @Model.BlackPlayer.Name
+</h2>
+
+<div id="field2" class="game-field" style="display: inline-block;">
+
+</div>
+<div id="historyBlock" class="history-block history">
+    @foreach(var move in Model.Moves)
+    {
+        var info = move.From.X + "/" + move.From.Y + " -> " + move.To.X + "/" + move.To.Y;
+    <div>
+        @info
+    </div>
+    }
+</div>
+
+<script src="~/js/fields.js" asp-append-version="true"></script>
+<script>
+    window.onload = function () {
+        let game = {
+            notation: '@Model.Positions',
+            mySide: Side.Spectator
+        };
+        initField("field2", game);
+    }
+</script>
+@if(Model.FinishReason == null)
+{
+<script>
+    let gameIsFinish = false;
+    function goGame(alwaysCallback) {
+        SendRequest({
+            url: '/Chess/GetGame',
+            method: 'POST',
+            success: function (data) {
+                let data2 = JSON.parse(data.responseText);
+                initGame(data2);
+            },
+            always: function () {
+                if (alwaysCallback != undefined) {
+                    alwaysCallback();
+                }
+            }
+        });
+    }
+    function initGame(data2) {
+        game = {
+            mySide: Side.Spectator,
+        };
+        game.id = data2.id;
+        game.stepSide = data2.stepSide;
+        game.status = data2.status;
+        game.isFinish = data2.isFinish;
+        game.finishReason = data2.finishReason;
+        game.winSide = data2.winSide;
+        game.availableMoves = data2.availableMoves;
+        game.notation = data2.notation;
+        game.historyMoves = data2.historyMoves;
+        game.fieldWidth = data2.fieldWidth;
+        game.fieldHeight = data2.fieldHeight;
+
+        if (game.isFinish == false) {
+        } else {
+            gameIsFinish = true;
+        }
+
+        initField("field2", game);
+        initHistory('historyBlock', game);
+    }
+
+    let checkEnemyStepInProcess = false;;
+
+    function CheckGame() {
+        if (gameIsFinish) {
+            return;
+        }
+
+        checkEnemyStepInProcess = true;
+
+        goGame(function () {
+            checkEnemyStepInProcess = false;
+        });
+    }
+
+    window.onload = function () {
+        CheckGame();
+        setInterval(function () {
+            CheckGame();
+        }, 5000);
+    }
+</script>
+}

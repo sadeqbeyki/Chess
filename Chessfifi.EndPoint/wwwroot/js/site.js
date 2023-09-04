@@ -3,48 +3,48 @@
 
 // Write your JavaScript code.
 
-//Chess JS
 
-//var center = document.createElement('center');
+function SendRequest(options) {
+    let _this = {};
+    let defaultOptions = {
+        method: 'POST',
+    }
 
-//// Create a table element
-//var ChessTable = document.createElement('table');
-//for (var i = 0; i < 5; i++) {
+    _this.options = Object.assign({}, defaultOptions, options);
 
-//    // Create a row
-//    var tr = document.createElement('tr');
-//    for (var j = 0; j < 5; j++) {
+    _this.Send = function () {
+        let bodyString = '';
+        let first = true;
 
-//        // Create a cell
-//        var td = document.createElement('td');
+        for (var prop in _this.options.body) {
+            if (first == false) {
+                bodyString += "&";
+            }
+            bodyString += prop + "=" + _this.options.body[prop];
+            first = false;
+        }
 
-//        // If the sum of cell coordinates is even
-//        // then color the cell white
-//        if ((i + j) % 2 == 0) {
-
-//            // Create a class attribute for all white cells
-//            td.setAttribute('class', 'cell whitecell');
-//            tr.appendChild(td);
-//        }
-
-//        // If the sum of cell coordinates is odd then
-//        // color the cell black
-//        else {
-
-//            // Create a class attribute for all black cells
-//            td.setAttribute('class', 'cell blackcell');
-
-//            // Append the cell to its row
-//            tr.appendChild(td);
-//        }
-//    }
-
-//    // Append the row
-//    ChessTable.appendChild(tr);
-//}
-//center.appendChild(ChessTable);
-
-//// Modifying table attribute properties
-//ChessTable.setAttribute('cellspacing', '0');
-//ChessTable.setAttribute('width', '500px');
-//document.body.appendChild(center);
+        let xhr = new XMLHttpRequest();
+        xhr.open(_this.options.method, _this.options.url, true);
+        xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) {
+                return;
+            }
+            if (this.status == 200) {
+                if (_this.options.success) {
+                    _this.options.success(this);
+                }
+            } else {
+                if (_this.options.error) {
+                    _this.options.error(this);
+                }
+            }
+            if (_this.options.always) {
+                _this.options.always(this);
+            }
+        };
+        xhr.send(bodyString);
+    }
+    _this.Send();
+}
