@@ -50,7 +50,7 @@ public class RegisterModel : PageModel
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "Пароль и подтверждение пароля не совпадает.")]
+        [Compare("Password", ErrorMessage = "passwords didnt match")]
         public string ConfirmPassword { get; set; }
     }
 

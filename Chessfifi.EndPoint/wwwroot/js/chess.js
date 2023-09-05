@@ -69,7 +69,7 @@ setInterval(function () {
                     } else if (status == SearchStatuses.InProcess) {
                         document.getElementById('searchSpan').innerHTML = document.getElementById('searchSpan').innerHTML + '.';
                     } else if (status == SearchStatuses.NeedConfirmOpponent) {
-                        document.getElementById('searchSpan2').innerHTML = 'Ожидается подтверждение оппонента';
+                        document.getElementById('searchSpan2').innerHTML = 'Opponent confirmation awaited';
                     } else if (status == SearchStatuses.Finish) {
                         currentSearchId = -1;
                         document.getElementById('searchBlock').classList.remove('in-process');
@@ -305,11 +305,11 @@ function initGame(data2) {
 
             finishReasonLabel.classList.remove('hidden');
             if (game.finishReason == FinishReason.Mate) {
-                finishReasonLabel.innerHTML = 'Поставлен мат';
+                finishReasonLabel.innerHTML = 'Checkmated';
             } else if (game.finishReason == FinishReason.Surrender) {
-                finishReasonLabel.innerHTML = 'Признанное поражение';
+                finishReasonLabel.innerHTML = 'Conceded defeat';
             } else if (game.finishReason == FinishReason.TimeOver) {
-                finishReasonLabel.innerHTML = 'Время закончилось';
+                finishReasonLabel.innerHTML = 'Time is over';
             } else {
                 finishReasonLabel.innerHTML = game.finishReason;
             }

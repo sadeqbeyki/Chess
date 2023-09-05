@@ -131,7 +131,8 @@ function initField(fieldSelector, game) {
                 let img = document.createElement('img');
                 let imgSrcName = piece.Type + "-" + piece.Side + '.png';
                 img.classList.add('piece-img');
-                img.src = '/Content/Images/Piece/' + imgSrcName;
+                //img.src = '/Content/Images/Piece/' + imgSrcName;
+                img.src = '/img/pieces/320/' + imgSrcName;
                 div.appendChild(img);
                 dropZones.push(div);
                 if (mySide == piece.Side) {
