@@ -12,12 +12,13 @@ using Chessfifi.Infrastructure.Repositories;
 using Chessfifi.Services.Service;
 using NLog.Extensions.Logging;
 using Chessfifi.EndPoint.Middlewares;
-
+using Chessfifi.EndPoint.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
 
 //builder.builder.Services.AddScoped<IGameRepository, GameRepository>();
 //builder.builder.Services.AddDbContext<ApplicationDbContext>(c =>
@@ -112,7 +113,10 @@ app.UseEndpoints(endpoints =>
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
     endpoints.MapRazorPages();
+    endpoints.MapHub<ChatHub>("/chatHub");
 });
+
+//app.MapHub<ChatHub>("/chatHub");
 //app.MapControllerRoute(
 //    name: "default",
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
