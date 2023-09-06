@@ -19,84 +19,86 @@
 <script src="~/js/chess.js" asp-append-version="true"></script>
 <script src="~/js/fields.js" asp-append-version="true"></script>
 
+<div class="container-fluid">
+    <div class="row">
+        <div id="gameBlock" class="game-block bg-dark col-8">
+            <!--search game block-->
+            <div id="searchBlock" class="game-search">
+                <img src="/img/pieces/play.png" class="search-mode selected-mode" data-value="classic" title="Classic Chess" onclick="setMode(this)">
+                @* <img src="/img/pieces/dragon-mode.png" class="search-mode" data-value="dragon" title="Add-on 'Dragon'" onclick="setMode(this)"> *@
+                <button class="btn btn-success hide-is-search" onclick="startSearch()">جستجوی حریف . . . </button>
+                <div class="show-is-search">
+                    <button class="btn btn-warning" onclick="stopSearch()">چشم پوشی از جستجو</button>
+                    <label>
+                        Looking for a game
+                        <span id="searchSpan"></span>
+                        <span id="searchSpan2"></span>
+                    </label>
+                </div>
+            </div>
 
+            <!--chess block-->
+            <div id="fieldBlock" class="field-block">
 
-<div id="gameBlock" class="game-block bg-dark">
-    <!--search game block-->
-    <div id="searchBlock" class="game-search">
-        <img src="/img/pieces/play.png" class="search-mode selected-mode" data-value="classic" title="Classic Chess" onclick="setMode(this)">
-        @* <img src="/img/pieces/dragon-mode.png" class="search-mode" data-value="dragon" title="Add-on 'Dragon'" onclick="setMode(this)"> *@
-        <button class="btn btn-success hide-is-search" onclick="startSearch()">جستجوی حریف . . . </button>
-        <div class="show-is-search">
-            <button class="btn btn-warning" onclick="stopSearch()">چشم پوشی از جستجو</button>
-            <label>
-                Looking for a game
-                <span id="searchSpan"></span>
-                <span id="searchSpan2"></span>
-            </label>
+                <div class="bg-dark text-white game-status">
+                    <label class="bg-dark text-success game-my-step hidden">Your TURN</label>
+                    <label class="bg-dark text-danger game-not-my-step hidden">Wait! It is the opponent's TURN</label>
+
+                    <label class="bg-dark text-white game-my-win hidden">You WON!!</label>
+                    <label class="bg-dark text-white game-not-my-win hidden ">You LOSE.</label>
+                    <label class="bg-dark text-white game-draw hidden">Draw</label>
+                </div>
+
+                <div id="field" class="game-field text-light bg-dark">
+                </div>
+
+                <div class="bg-dark text-white game-status">
+                    <div></div>
+                    <label class="game-enemy-name hidden"></label>
+                    <div></div>
+                    <label class="game-finish-reason hidden"></label>
+                </div>
+                <div id="actionBlock" class="game-actions">
+                    <button class="btn btn-warning" onclick="surrenderInitial()">Surrender</button>
+                    <a id="gameLink" class="hidden btn btn-info">Game LINK</a>
+                </div>
+            </div>
+
+            <!--history block-->
+            <div id="historyBlock" class="history-block text-light bg-dark"></div>
+
         </div>
+        <!--begin chat-->
+        <div class="col-4 bg-black text-light">
+            <div class="row p-1">
+                <div class="col-3">User :</div>
+                <div class="col-9" id="userInput" data-username="@User.Identity.Name">
+                    <label id="userInput">@User.Identity.Name</label>
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-3">Message:</div>
+                <div class="col-9"><input type="text" class="w-100" id="messageInput" /></div>
+            </div>
+            <div class="row p-1">
+                <div class="col-sm text-end">
+                    <input type="button" id="sendButton" value="Send Message" />
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-12">
+                    <hr />
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-12">
+                    <ul id="messagesList"></ul>
+                </div>
+            </div>
+        </div>
+        <!--end chat-->
     </div>
-
-    <!--chess block-->
-    <div id="fieldBlock" class="field-block">
-        <div id="field" class="game-field text-light bg-dark">
-        </div>
-
-        <div class="bg-dark text-white game-status">
-            <label class="bg-dark text-white game-my-step hidden">نوبت شماست</label>
-            <label class="bg-dark text-white game-not-my-step hidden">شکیبا باشید، نوبت حریف است.</label>
-
-            <label class="bg-dark text-white game-my-win hidden">شما برنده شدید</label>
-            <label class="bg-dark text-white game-not-my-win hidden ">شما باختید</label>
-            <label class="bg-dark text-white game-draw hidden">Draw</label>
-
-            <div></div>
-            <label class="game-enemy-name hidden"></label>
-            <div></div>
-            <label class="game-finish-reason hidden"></label>
-        </div>
-        <div id="actionBlock" class="game-actions">
-            <button class="btn btn-warning" onclick="surrenderInitial()">واگذاری بازی</button>
-            <a id="gameLink" class="hidden btn btn-info">لینک بازی</a>
-        </div>
-    </div>
-
-    <!--history block-->
-    <div id="historyBlock" class="history-block text-light bg-dark"></div>
-
-    <!--begin chat-->
-    <div class="container bg-black text-light">
-        <div class="row p-1">
-            <div class="col-1">User</div>
-            @*                 <div class="col-5"><input type="text" id="userInput" /></div> *@
-            <div id="userInput" data-username="@User.Identity.Name">
-                <label class="col-5" id="userInput">@User.Identity.Name</label>
-            </div>
-        </div>
-        <div class="row p-1">
-            <div class="col-1">Message</div>
-            <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
-        </div>
-        <div class="row p-1">
-            <div class="col-6 text-end">
-                <input type="button" id="sendButton" value="Send Message" />
-            </div>
-        </div>
-        <div class="row p-1">
-            <div class="col-6">
-                <hr />
-            </div>
-        </div>
-        <div class="row p-1">
-            <div class="col-6">
-                <ul id="messagesList"></ul>
-            </div>
-        </div>
-    </div>
-    <!--end chat-->
 </div>
-
-
 <!--begin model add piece-->
 <div id="pawnTransformPieceModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

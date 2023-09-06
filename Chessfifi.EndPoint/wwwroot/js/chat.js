@@ -1,6 +1,13 @@
 ﻿"use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+//۰۰۰
+document.getElementById("messageInput").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // جلوگیری از ارسال فرم پیش‌فرض
+        sendMessage(); // فراخوانی تابع ارسال پیام
+    }
+});
 
 //Disable the send button until connection is established.
 document.getElementById("sendButton").disabled = true;
@@ -20,12 +27,25 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    //var user = document.getElementById("userInput").value;
-    var user = document.getElementById("userInput").getAttribute("data-username");
+//document.getElementById("sendButton").addEventListener("click", function (event) {
+//    var user = document.getElementById("userInput").getAttribute("data-username");
+//    var message = document.getElementById("messageInput").value;
+//    connection.invoke("SendMessage", user, message).catch(function (err) {
+//        return console.error(err.toString());
+//    });
+//    event.preventDefault();
+//});
+
+//۰۰۰
+function sendMessage() {
     var message = document.getElementById("messageInput").value;
+    var user = document.getElementById("userInput").getAttribute("data-username");
+
     connection.invoke("SendMessage", user, message).catch(function (err) {
         return console.error(err.toString());
     });
-    event.preventDefault();
-});
+
+    // پاک کردن محتوای ورودی پیام
+    document.getElementById("messageInput").value = "";
+}
+
