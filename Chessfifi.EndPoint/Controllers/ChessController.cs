@@ -182,7 +182,7 @@ public class ChessController : BaseController
             }
         }
 
-        // todo сделать DTO для отправки на фронт
+        // todo DTO
         return Json(new
         {
             game.Id,

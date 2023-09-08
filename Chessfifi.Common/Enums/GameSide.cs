@@ -1,17 +1,17 @@
 ﻿namespace Chessfifi.Common.Enums;
 
 /// <summary>
-/// Game Mode
+/// Players
 /// </summary>
-public enum GameMode
+public enum GameSide
 {
     /// <summary>
-    /// Classic.
+    /// white.
     /// </summary>
-    Classic = 0,
+    White = 0,
 
     /// <summary>
-    /// Dragon
+    /// black.
     /// </summary>
-    Dragon = 1,
+    Black = 1,
 }

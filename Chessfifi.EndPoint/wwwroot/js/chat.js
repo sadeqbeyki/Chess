@@ -27,14 +27,14 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-//document.getElementById("sendButton").addEventListener("click", function (event) {
-//    var user = document.getElementById("userInput").getAttribute("data-username");
-//    var message = document.getElementById("messageInput").value;
-//    connection.invoke("SendMessage", user, message).catch(function (err) {
-//        return console.error(err.toString());
-//    });
-//    event.preventDefault();
-//});
+document.getElementById("sendButton").addEventListener("click", function (event) {
+    var user = document.getElementById("userInput").getAttribute("data-username");
+    var message = document.getElementById("messageInput").value;
+    connection.invoke("SendMessage", user, message).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
 
 //۰۰۰
 function sendMessage() {
