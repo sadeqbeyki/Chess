@@ -1,7 +1,7 @@
 ﻿using Chessfifi.Domain;
 using Chessfifi.Domain.PieceTypes;
 
-namespace Chessfifi.Services.Addon;
+namespace Chessfifi.Contracts.Addon;
 
 /// <summary>
 /// Type "Soldier"

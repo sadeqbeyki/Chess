@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chessfifi.Services", "Chess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chessfifi.Common", "Chessfifi.Common\Chessfifi.Common.csproj", "{933E9CF7-7022-4BC1-B9EB-BA2608175F41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessfifi.Contracts", "..\Chessfifi.Contracts\Chessfifi.Contracts.csproj", "{FE1DAC52-26F1-4D51-ABB6-AD155F4307B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chessfifi.Contracts", "Chessfifi.Contracts\Chessfifi.Contracts.csproj", "{6A0E6435-D6D7-40ED-A1D9-4EBB43CBC52E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{933E9CF7-7022-4BC1-B9EB-BA2608175F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{933E9CF7-7022-4BC1-B9EB-BA2608175F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{933E9CF7-7022-4BC1-B9EB-BA2608175F41}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE1DAC52-26F1-4D51-ABB6-AD155F4307B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE1DAC52-26F1-4D51-ABB6-AD155F4307B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE1DAC52-26F1-4D51-ABB6-AD155F4307B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE1DAC52-26F1-4D51-ABB6-AD155F4307B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0E6435-D6D7-40ED-A1D9-4EBB43CBC52E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0E6435-D6D7-40ED-A1D9-4EBB43CBC52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0E6435-D6D7-40ED-A1D9-4EBB43CBC52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0E6435-D6D7-40ED-A1D9-4EBB43CBC52E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

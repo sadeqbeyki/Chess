@@ -1,7 +1,7 @@
 ﻿using Chessfifi.Domain;
 using Chessfifi.Domain.PieceTypes;
 
-namespace Bg.Chess.Game.Addon;
+namespace Chessfifi.Contracts.Addon;
 
 /// <summary>
 /// Type "Hydra"

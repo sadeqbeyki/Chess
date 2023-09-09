@@ -2,8 +2,9 @@
 using DomainSide = Chessfifi.Domain.Side;
 using DomainPiece = Chessfifi.Domain.Piece;
 using Chessfifi.Domain;
+using Chessfifi.Services;
 
-namespace Chessfifi.Services.Addon
+namespace Chessfifi.Contracts.Addon
 {
     /// <summary>
     /// Game Rule
