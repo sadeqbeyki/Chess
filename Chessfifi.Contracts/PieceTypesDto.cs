@@ -3,7 +3,7 @@ using Chessfifi.Domain;
 using Chessfifi.Domain.Helpers;
 using Chessfifi.Domain.PieceTypes;
 
-namespace Chessfifi.Services;
+namespace Chessfifi.Contracts;
 public class PieceTypesDto
 {
     public PieceTypesDto()

@@ -1,6 +1,6 @@
 ﻿using Chessfifi.Common.Enums;
 
-namespace Chessfifi.Services.Dto;
+namespace Chessfifi.Contracts.Dto;
 public class HistoryGame
 {
     public string Id { get; set; }

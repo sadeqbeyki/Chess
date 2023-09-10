@@ -1,4 +1,4 @@
-﻿namespace Chessfifi.Services.Dto;
+﻿namespace Chessfifi.Contracts.Dto;
 
 /// <summary>
 /// Move
