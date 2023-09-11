@@ -1,17 +1,13 @@
-﻿using Chessfifi.Domain.ChessAgg;
-using Chessfifi.Services.Dto;
-using Chessfifi.Services.Service.Models;
+﻿using Chessfifi.Contracts;
+using Chessfifi.Contracts.Dto;
+using Chessfifi.Domain;
+using Chessfifi.Domain.ChessAgg;
+using Chessfifi.Services.Models;
+using Chessfifi.Services.Service;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Chessfifi.Services.Service;
-public interface IGameService
-{
-    public void SaveGame(IGameInfo game);
-    public HistoryGame GetGame(string gameId);
-    public IEnumerable<HistoryGame> GetGames(int playerId);
-    List<IGameInfo> GetNotFinishGames();
-}
+namespace Chessfifi.Services;
 
 public class GameService : IGameService
 {
@@ -75,8 +71,8 @@ public class GameService : IGameService
         return games.Select(x => new HistoryGame
         {
             Id = x.LogicalName,
-            BlackPlayer = new Dto.PlayerDto { Id = x.BlackPlayerId },
-            WhitePlayer = new Dto.PlayerDto { Id = x.WhitePlayerId },
+            BlackPlayer = new PlayerDto { Id = x.BlackPlayerId },
+            WhitePlayer = new PlayerDto { Id = x.WhitePlayerId },
             FinishReason = (Common.Enums.FinishReason?)x.FinishReason,
             GameMode = (Common.Enums.GameMode?)x.GameMode,
             WinSide = (Common.Enums.GameSide?)x.WinSide,
@@ -143,13 +139,13 @@ public class GameService : IGameService
         game.Positions = dto.Positions;
     }
 
-    private Piece GetPieceByNotation(string piece)
+    private PieceDto GetPieceByNotation(string piece)
     {
         var toUpper = piece.ToUpper();
 
         var type = GetTypeByChar(piece.ToLower().ToCharArray()[0]);
         var side = piece == toUpper ? Common.Enums.GameSide.White : Common.Enums.GameSide.Black;
-        return new Piece
+        return new PieceDto
         {
             TypeName = type,
             TypeShortName = piece,
@@ -178,12 +174,12 @@ public class GameService : IGameService
         return new MoveDto()
         {
             Runner = GetPieceByNotation(move.Runner),
-            From = move.From == null ? null : new Position
+            From = move.From == null ? null : new PositionDto
             {
                 X = move.From.X,
                 Y = move.From.Y,
             },
-            To = new Position
+            To = new PositionDto
             {
                 X = move.To.X,
                 Y = move.To.Y,

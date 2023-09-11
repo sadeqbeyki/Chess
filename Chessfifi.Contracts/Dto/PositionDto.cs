@@ -1,6 +1,6 @@
 ﻿namespace Chessfifi.Contracts.Dto;
 
-public class Position
+public class PositionDto
 {
     public int X { get; set; }
 

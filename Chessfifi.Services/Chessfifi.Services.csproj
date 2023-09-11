@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Chessfifi.Contracts\Chessfifi.Contracts.csproj" />
     <ProjectReference Include="..\Chessfifi.Domain\Chessfifi.Domain.csproj" />
     <ProjectReference Include="..\Chessfifi.Infrastructure\Chessfifi.Infrastructure.csproj" />
   </ItemGroup>

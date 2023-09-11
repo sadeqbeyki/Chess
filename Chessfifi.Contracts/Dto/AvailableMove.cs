@@ -7,10 +7,10 @@ public class AvailableMove
     /// <summary>
     /// Where i am
     /// </summary>
-    public Position From { get; set; }
+    public PositionDto From { get; set; }
 
     /// <summary>
     /// where to go
     /// </summary>
-    public List<Position> To { get; set; }
+    public List<PositionDto> To { get; set; }
 }

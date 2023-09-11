@@ -13,6 +13,7 @@ using Chessfifi.Services.Service;
 using NLog.Extensions.Logging;
 using Chessfifi.EndPoint.Middlewares;
 using Chessfifi.EndPoint.Hubs;
+using Chessfifi.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 

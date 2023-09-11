@@ -1,13 +1,9 @@
-﻿using Chessfifi.Domain.UserAgg;
-using Chessfifi.Services.Dto;
+﻿using Chessfifi.Contracts.Dto;
+using Chessfifi.Domain.UserAgg;
+using Chessfifi.Services.Service;
 using Microsoft.AspNetCore.Identity;
 
-namespace Chessfifi.Services.Service;
-
-public interface IUserService
-{
-    User GetUser(string id);
-}
+namespace Chessfifi.Services;
 
 public class UserService : IUserService
 {

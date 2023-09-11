@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Authorization;
 using Chessfifi.Services;
 using Chessfifi.Services.Service;
 using Chessfifi.EndPoint.Models;
-using Chessfifi.Services.Dto;
 using static Chessfifi.EndPoint.Models.HistoryGameModel;
+using Chessfifi.Contracts;
+using Chessfifi.Contracts.Dto;
 
 namespace Chessfifi.EndPoint.Controllers;
 [Authorize]
@@ -146,7 +147,7 @@ public class ChessController : BaseController
         }
 
         string notation;
-        List<Chessfifi.Services.Dto.AvailableMove> moves = null;
+        List<AvailableMove> moves = null;
         if (game.IsFinish)
         {
             notation = game.GetForsythEdwardsNotation(true);

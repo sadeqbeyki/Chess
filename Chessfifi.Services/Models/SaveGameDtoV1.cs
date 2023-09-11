@@ -1,4 +1,4 @@
-﻿namespace Chessfifi.Services.Service.Models;
+﻿namespace Chessfifi.Services.Models;
 public class SaveGameDtoV1
 {
     public List<Move> Moves { get; set; }

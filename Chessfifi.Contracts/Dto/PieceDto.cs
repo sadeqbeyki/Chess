@@ -2,7 +2,7 @@
 
 namespace Chessfifi.Contracts.Dto;
 
-public class Piece
+public class PieceDto
 {
     public GameSide Side { get; set; }
 

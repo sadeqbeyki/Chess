@@ -1,13 +1,7 @@
-﻿using Chessfifi.Domain.ChessAgg;
-using Chessfifi.Services.Dto;
+﻿using Chessfifi.Contracts.Dto;
+using Chessfifi.Domain.ChessAgg;
 
 namespace Chessfifi.Services.Service;
-public interface IPlayerService
-{
-    public PlayerDto FindPlayerByUserId(string userId);
-    public PlayerDto GetOrCreatePlayerByUserId(string userId, string name);
-    public PlayerDto GetPlayer(int id);
-}
 
 public class PlayerService : IPlayerService
 {

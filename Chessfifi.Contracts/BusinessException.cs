@@ -1,4 +1,4 @@
-﻿namespace Chessfifi.Services;
+﻿namespace Chessfifi.Contracts;
 
 public class BusinessException : Exception
 {

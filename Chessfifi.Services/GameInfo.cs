@@ -1,34 +1,11 @@
-﻿using ChessDotCore.Engine;
-using Chessfifi.Common.Enums;
+﻿using Chessfifi.Common.Enums;
+using Chessfifi.Contracts.Addon;
+using Chessfifi.Contracts.Dto;
 using Chessfifi.Domain;
 using Chessfifi.Domain.Helpers;
-using Chessfifi.Services.Addon;
-using Chessfifi.Services.Dto;
 
-namespace Chessfifi.Services;
-public interface IGameInfo
-{
-    string Id { get; }
-    PlayerDto WhitePlayer { get; }
-    PlayerDto BlackPlayer { get; }
-    GameSide StepSide { get; }
-    GameMode GameMode { get; }
-    bool IsMyGame(int playerId);
-    int FieldWidth { get; }
-    int FieldHeight { get; }
 
-    bool IsFinish { get; }
-    void Move(int playerId, int fromX, int fromY, int toX, int toY, string pawnTransformPiece = null);
-
-    string GetForsythEdwardsNotation(bool onlyPositions = false);
-
-    List<Dto.AvailableMove> AvailableMoves();
-
-    List<Dto.MoveDto> GetMoves();
-    void Surrender(int playerId);
-    Common.Enums.FinishReason? FinishReason { get; }
-    GameSide? WinSide { get; }
-}
+namespace Chessfifi.Contracts;
 
 public class GameInfo : IGameInfo
 {
@@ -62,15 +39,15 @@ public class GameInfo : IGameInfo
             _game.Init();
         }
 
-        // оставлю для отладки особых случаев
+        // I'll leave it for debugging special cases
         if (false)
         {
             var rules2 = new ClassicRules();
-            rules2.Positions = new List<Domain.Position>
+            rules2.Positions = new List<Position>
             {
-                new Domain.Position(4, 6, PieceBuilder.Pawn(Side.White)),
-                new Domain.Position(7, 7, PieceBuilder.King(Side.Black)),
-                new Domain.Position(0, 0, PieceBuilder.King(Side.White)),
+                new Position(4, 6, PieceBuilder.Pawn(Side.White)),
+                new Position(7, 7, PieceBuilder.King(Side.Black)),
+                new Position(0, 0, PieceBuilder.King(Side.White)),
             };
             var field2 = new Field(rules2);
             _game.Init(field2);
@@ -133,8 +110,8 @@ public class GameInfo : IGameInfo
         return _game.AvailableMoves().Select(move =>
         {
             var dto = new Dto.AvailableMove();
-            dto.From = new Dto.Position { X = move.From.X, Y = move.From.Y };
-            dto.To = move.To.Select(to => new Dto.Position { X = to.X, Y = to.Y }).ToList();
+            dto.From = new Dto.PositionDto { X = move.From.X, Y = move.From.Y };
+            dto.To = move.To.Select(to => new Dto.PositionDto { X = to.X, Y = to.Y }).ToList();
             return dto;
         }).ToList();
     }
@@ -148,7 +125,7 @@ public class GameInfo : IGameInfo
         }).ToList();
     }
 
-    private Dto.MoveDto Init(Domain.Move move)
+    private Dto.MoveDto Init(Move move)
     {
         if (move == null)
         {
@@ -157,8 +134,8 @@ public class GameInfo : IGameInfo
 
         var dto = new Dto.MoveDto
         {
-            From = move.From == null ? null : new Dto.Position { X = move.From.X, Y = move.From.Y },
-            To = new Dto.Position { X = move.To.X, Y = move.To.Y },
+            From = move.From == null ? null : new Dto.PositionDto { X = move.From.X, Y = move.From.Y },
+            To = new Dto.PositionDto { X = move.To.X, Y = move.To.Y },
 
             AdditionalMove = Init(move.AdditionalMove),
             KillEnemy = FillDtoPiece(move.KillEnemy),
@@ -168,14 +145,14 @@ public class GameInfo : IGameInfo
         return dto;
     }
 
-    private Dto.Piece FillDtoPiece(Domain.Piece piece)
+    private Dto.PieceDto FillDtoPiece(Piece piece)
     {
         if (piece == null)
         {
             return null;
         }
 
-        return new Dto.Piece
+        return new Dto.PieceDto
         {
             Side = piece.Side == Side.White ? GameSide.White : GameSide.Black,
             TypeName = piece.Type.Name,

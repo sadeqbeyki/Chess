@@ -8,22 +8,22 @@ public class MoveDto
     /// <summary>
     /// From
     /// </summary>
-    public Position From { get; set; }
+    public PositionDto From { get; set; }
 
     /// <summary>
     /// To
     /// </summary>
-    public Position To { get; set; }
+    public PositionDto To { get; set; }
 
     /// <summary>
     /// Runner
     /// </summary>
-    public Piece Runner { get; set; }
+    public PieceDto Runner { get; set; }
 
     /// <summary>
     /// If after a move an enemy piece dies.
     /// </summary>
-    public Piece KillEnemy { get; set; }
+    public PieceDto KillEnemy { get; set; }
 
     /// <summary>
     /// When the king moved, the rook also moved, but this is one.
