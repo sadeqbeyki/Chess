@@ -83,14 +83,14 @@ public class GameInfo : IGameInfo
     }
 
     /// <summary>
-    /// Сделать ход.
+    /// Make a move
     /// </summary>
-    /// <param name="playerId">Кто ходит.</param>
-    /// <param name="fromX">Откуда X.</param>
-    /// <param name="fromY">Откуда Y.</param>
-    /// <param name="toX">Куда X.</param>
-    /// <param name="toY">Куда Y.</param>
-    /// <param name="pawnTransformPiece">Название фигуры, для превращения пешки в другую фигуру в конце поля.</param>
+    /// <param name="playerId">Who is walking</param>
+    /// <param name="fromX">from X.</param>
+    /// <param name="fromY">from Y.</param>
+    /// <param name="toX">to X.</param>
+    /// <param name="toY">to Y.</param>
+    /// <param name="pawnTransformPiece">The name of a piece to move a pawn to another piece at the end of the field.</param>
     public void Move(int playerId, int fromX, int fromY, int toX, int toY, string pawnTransformPiece = null)
     {
         Side side = GetSide(playerId);
@@ -112,17 +112,17 @@ public class GameInfo : IGameInfo
         }
         else
         {
-            throw new BusinessException("Это не ваша игра");
+            throw new BusinessException("This is not your game");
         }
 
         return side;
     }
 
     /// <summary>
-    /// Нотация Форсайта — Эдвардса / Forsyth–Edwards Notation.
+    /// Forsyth–Edwards Notation.
     /// </summary>
-    /// <param name="onlyPositions">Только расстановка фигур.</param>
-    /// <returns>Растановка фигур на доске.</returns>
+    /// <param name="onlyPositions">Only the arrangement of figures.</param>
+    /// <returns>Arrangement of pieces on the board.</returns>
     public string GetForsythEdwardsNotation(bool onlyPositions = false)
     {
         return _game.GetForsythEdwardsNotation(onlyPositions);

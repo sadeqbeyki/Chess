@@ -4,7 +4,7 @@ using Chessfifi.Domain.PieceTypes;
 namespace Bg.Chess.Game.Addon;
 
 /// <summary>
-/// Фигура "Гидра"
+/// Type "Hydra"
 /// </summary>
 public class Hydra : PieceType
 {

@@ -6,7 +6,7 @@ using Chessfifi.Domain;
 namespace Chessfifi.Services.Addon
 {
     /// <summary>
-    /// Правила игры.
+    /// Game Rule
     /// </summary>
     public class DragonRules : Rules
     {

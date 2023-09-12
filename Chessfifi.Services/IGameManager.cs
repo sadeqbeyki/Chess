@@ -115,7 +115,7 @@ public class GameManager : IGameManager
         var search = searchList.FirstOrDefault(x => x.Player.Id == playerId);
         if (search == null)
         {
-            throw new BusinessException("Поиск игры отсутствует");
+            throw new BusinessException("Game search missing");
         }
 
         if (search.Status == SearchStatus.NeedConfirm)

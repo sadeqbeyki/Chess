@@ -18,47 +18,26 @@ public class HistoryGameModel
 
     public class MoveViewModel
     {
-        /// <summary>
-        /// ������.
-        /// </summary>
+
         public PositionViewModel From { get; set; }
 
-        /// <summary>
-        /// ����.
-        /// </summary>
         public PositionViewModel To { get; set; }
 
-        /// <summary>
-        /// ��� �����.
-        /// </summary>
+
         public string Runner { get; set; }
 
-        /// <summary>
-        /// ���� ����� ���� ������ ��������� ������.
-        /// </summary>
         public string KillEnemy { get; set; }
 
-        /// <summary>
-        /// ��� ���� ������, ��������� � �����, �� ��� ����.
-        /// </summary>
         public MoveViewModel AdditionalMove { get; set; }
     }
 
     public class PositionViewModel
     {
-        /// <summary>
-        /// �� �����������.
-        /// </summary>
+
         public int X { get; set; }
 
-        /// <summary>
-        /// �� ���������.
-        /// </summary>
         public int Y { get; set; }
 
-        /// <summary>
-        /// ������.
-        /// </summary>
         public string Piece { get; set; }
     }
 

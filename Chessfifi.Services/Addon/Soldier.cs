@@ -4,7 +4,7 @@ using Chessfifi.Domain.PieceTypes;
 namespace Chessfifi.Services.Addon;
 
 /// <summary>
-/// Фигура "Гидра"
+/// Type "Soldier"
 /// </summary>
 public class Soldier : Pawn
 {
@@ -23,7 +23,7 @@ public class Soldier : Pawn
         var pawnMoves = base.GetBaseMoves(piece, moveMode);
         var position = piece.CurrentPosition;
 
-        // удалим ходы по вертикали и просчитаем заново
+        // delete the vertical moves and recalculate
         var availablePositions = pawnMoves.Where(x => x.X != position.X).ToList();
 
         var pos = piece.Field.GetPositionOrEmpty(position.X, position.Y + piece.MoveMult);
@@ -40,7 +40,7 @@ public class Soldier : Pawn
                 }
                 else
                 {
-                    // солдаты не может рубить вражеского солдата в лоб, только атака с боку (по диагонали)
+                    // soldiers cannot slash an enemy soldier head-on, only attack from the side (diagonally)
                     if (pos.Piece.Type.ShortName != piece.Type.ShortName)
                     {
                         availablePositions.Add(pos);

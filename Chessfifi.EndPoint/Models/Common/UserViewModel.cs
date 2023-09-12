@@ -1,16 +1,16 @@
 ﻿namespace Chessfifi.EndPoint.Models.Common;
 /// <summary>
-/// Пользователь.
+/// Account
 /// </summary>
 public class UserViewModel
 {
     /// <summary>
-    /// Идентификатор.
+    /// Id
     /// </summary>
     public string Id { get; set; }
 
     /// <summary>
-    /// Почта подтверждена.
+    /// Email Confirm
     /// </summary>
     public bool IsEmailConfirmed { get; set; }
 }

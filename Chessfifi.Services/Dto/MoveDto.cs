@@ -1,32 +1,32 @@
 ﻿namespace Chessfifi.Services.Dto;
 
 /// <summary>
-/// Ход.
+/// Move
 /// </summary>
 public class MoveDto
 {
     /// <summary>
-    /// Откуда.
+    /// From
     /// </summary>
     public Position From { get; set; }
 
     /// <summary>
-    /// Куда.
+    /// To
     /// </summary>
     public Position To { get; set; }
 
     /// <summary>
-    /// Кто ходил.
+    /// Runner
     /// </summary>
     public Piece Runner { get; set; }
 
     /// <summary>
-    /// Если после хода умерла вражеская фигура.
+    /// If after a move an enemy piece dies.
     /// </summary>
     public Piece KillEnemy { get; set; }
 
     /// <summary>
-    /// При ходе короля, двигалась и ладья, но это один.
+    /// When the king moved, the rook also moved, but this is one.
     /// </summary>
     public MoveDto AdditionalMove { get; set; }
 }

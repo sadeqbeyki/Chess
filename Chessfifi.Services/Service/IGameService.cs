@@ -32,7 +32,7 @@ public class GameService : IGameService
         _playerService = playerService;
         _gameManager = gameManager;
         _pieceTypes = pieceTypes;
-        // todo сделать LogSource набор констант
+        // todo make LogSource a set of constants
         _logger = loggerFactory.CreateLogger("chess");
     }
 

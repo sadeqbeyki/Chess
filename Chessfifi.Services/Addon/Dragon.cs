@@ -4,7 +4,7 @@ using Chessfifi.Domain.PieceTypes;
 namespace Chessfifi.Services.Addon;
 
 /// <summary>
-/// Фигура "Дракон"
+/// Type "Dragon"
 /// </summary>
 public class Dragon : PieceType
 {
